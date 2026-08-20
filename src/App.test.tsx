@@ -9,6 +9,8 @@ describe('landing page', () => {
     expect(
       screen.getByRole('heading', { name: /telemetry built for agents, not dashboards/i }),
     ).toBeInTheDocument()
+    expect(screen.getByText('02 / INFINITE RETENTION')).toBeInTheDocument()
+    expect(screen.getByText('04 / PREDICTABLE PRICING')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'OTEL in' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Blobs at rest' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'SQL out' })).toBeInTheDocument()

@@ -1,4 +1,4 @@
-# o11y landing page
+# TraceStore landing page
 
 Agent-native telemetry landing page built with React, TypeScript, and Vite.
 
@@ -32,7 +32,9 @@ npm run build
 
 Push the project to GitHub, then select **Settings → Pages → Build and deployment → GitHub Actions**. The workflow in `.github/workflows/deploy-pages.yml` validates, builds, and deploys the site whenever changes land on `main`.
 
-The workflow automatically uses the repository name as Vite's base path, so a repository named `o11y_landing` is served correctly from `https://<owner>.github.io/o11y_landing/`.
+The workflow builds the site at the root path for the custom domain `tracestore.dev`. The `public/CNAME` file preserves that domain when GitHub Pages deploys.
+
+Point the domain's DNS records at GitHub Pages and configure `tracestore.dev` under **Settings → Pages → Custom domain**. GitHub documents the current DNS records and domain-verification steps in its Pages settings.
 
 Configure these optional repository variables under **Settings → Secrets and variables → Actions → Variables**:
 

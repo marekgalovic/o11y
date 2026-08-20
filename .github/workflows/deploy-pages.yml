@@ -21,7 +21,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     env:
-      VITE_BASE_PATH: /${{ github.event.repository.name }}/
+      VITE_BASE_PATH: /
       VITE_WAITLIST_ENDPOINT: ${{ vars.VITE_WAITLIST_ENDPOINT }}
       VITE_BOOKING_URL: ${{ vars.VITE_BOOKING_URL }}
       VITE_POSTHOG_KEY: ${{ vars.VITE_POSTHOG_KEY }}

@@ -20,11 +20,11 @@ const sqlLines = [
 ]
 
 const comparisonRows = [
-  ['Primary interface', 'Composable SQL', 'Dashboards + proprietary UI'],
-  ['Telemetry shape', 'Raw and queryable', 'Aggregated at ingest'],
-  ['High cardinality', 'Useful context', 'A pricing problem'],
-  ['Investigation path', 'Chosen at query time', 'Predicted ahead of time'],
-  ['Built for', 'Agent loops', 'Human eyeballs'],
+  ['Primary user', 'Agents', 'Humans'],
+  ['Retention', 'Infinite by design', 'Priced expiry tiers'],
+  ['Cost model', 'Storage + query', 'Hosts + seats + signals + indexes'],
+  ['High cardinality', 'Context to preserve', 'A tax to control'],
+  ['Interface', 'Composable SQL', 'Dashboards + proprietary UI'],
 ]
 
 function BookingLink({ className = '' }: { className?: string }) {
@@ -80,11 +80,11 @@ function App() {
       </a>
 
       <header className="site-header">
-        <a aria-label="o11y home" className="wordmark" href="#top">
+        <a aria-label="TraceStore home" className="wordmark" href="#top">
           <span className="wordmark__mark" aria-hidden="true">
             ⊕
           </span>
-          o11y<span className="wordmark__cursor">_</span>
+          tracestore.dev<span className="wordmark__cursor">_</span>
         </a>
         <nav aria-label="Main navigation">
           <a href="#why">WHY</a>
@@ -103,13 +103,14 @@ function App() {
               <span className="status-dot" />
               AGENT-NATIVE TELEMETRY / 001
             </div>
-            <h1>
-              Telemetry built for agents,{' '}<br />
-              <span>not dashboards.</span>
+            <h1 aria-label="Telemetry built for agents, not dashboards.">
+              <span className="hero__line">Telemetry built for agents,</span><br />
+              <span className="hero__line hero__line--accent">not dashboards.</span>
             </h1>
             <p className="hero__lede">
               OTEL-native ingest. Blob storage at rest. SQL when an agent needs answers.
-              Keep every high-cardinality dimension without paying to turn it into a chart.
+              Keep every high-cardinality dimension forever, with predictable storage-and-query
+              pricing—not a tax on what your telemetry contains.
             </p>
             <LeadCapture source="hero" />
             <div className="hero__secondary">
@@ -176,9 +177,9 @@ function App() {
 
         <div className="signal-strip" aria-label="Product principles">
           <span>01 / OTEL-NATIVE</span>
-          <span>02 / OBJECT STORAGE</span>
+          <span>02 / INFINITE RETENTION</span>
           <span>03 / STANDARD SQL</span>
-          <span>04 / RAW CONTEXT</span>
+          <span>04 / PREDICTABLE PRICING</span>
           <span>05 / ZERO DASHBOARDS</span>
         </div>
 
@@ -205,12 +206,12 @@ function App() {
             <article className="principle-card principle-card--acid">
               <div className="principle-card__index">02</div>
               <BlobIcon />
-              <h3>Raw by default</h3>
+              <h3>Raw, forever</h3>
               <p>
-                Keep the detail. Store traces, logs, and metrics on low-cost blob storage, then
-                decide what matters when the incident actually happens.
+                Keep traces, logs, and metrics on low-cost blob storage with no retention window.
+                Decide what matters when the incident actually happens—even years later.
               </p>
-              <span className="mono-tag">retention &gt; prediction</span>
+              <span className="mono-tag">retention_days := ∞</span>
             </article>
             <article className="principle-card">
               <div className="principle-card__index">03</div>
@@ -232,8 +233,8 @@ function App() {
               <h2>Three primitives.{' '}<br />No theater.</h2>
             </div>
             <p>
-              A deliberately boring data path is a feature. Send standard telemetry, retain it
-              economically, and query the raw history with tools every model already understands.
+              The economics come from a deliberately boring data path. Send standard telemetry,
+              retain it indefinitely, and query raw history with tools every model understands.
             </p>
           </div>
 
@@ -243,7 +244,7 @@ function App() {
               <IngestIcon />
               <h3>OTEL in</h3>
               <p>Traces · logs · metrics</p>
-              <code>grpc://ingest.o11y</code>
+              <code>grpc://ingest.tracestore.dev</code>
             </div>
             <div className="pipeline__connector" aria-hidden="true">
               <span>STREAM</span>
@@ -273,7 +274,7 @@ function App() {
             <span>+</span>
             <p>
               No proprietary agent SDK. No new query DSL. No instrumentation rewrite.
-              <strong> If it speaks OpenTelemetry, it speaks o11y.</strong>
+              <strong> If it speaks OpenTelemetry, it speaks TraceStore.</strong>
             </p>
           </div>
         </section>
@@ -342,15 +343,15 @@ function App() {
               <h2>Stop paying the{' '}<br />dashboard tax.</h2>
             </div>
             <p>
-              Traditional observability optimizes for prebuilt views and human browsing. That
-              architecture gets awkward—and expensive—when software investigates continuously.
+              Traditional observability optimizes for prebuilt views and human browsing. TraceStore
+              retains raw context forever and keeps the bill to two predictable inputs: storage and query.
             </p>
           </div>
 
           <div className="comparison-table" role="table" aria-label="Agent-native versus dashboard-native telemetry">
             <div className="comparison-row comparison-row--head" role="row">
               <span role="columnheader">CONSTRAINT</span>
-              <span role="columnheader">o11y / AGENT-NATIVE</span>
+              <span role="columnheader">TRACESTORE / AGENT-NATIVE</span>
               <span role="columnheader">DASHBOARD-NATIVE</span>
             </div>
             {comparisonRows.map(([label, agent, legacy]) => (
@@ -362,18 +363,8 @@ function App() {
             ))}
           </div>
           <p className="comparison__disclaimer">
-            * Architectural direction, not a benchmark. We’re building with early design partners now.
+            * Pricing model, not a published rate card. We’re validating it with early design partners now.
           </p>
-        </section>
-
-        <section className="manifesto" data-reveal>
-          <div className="manifesto__label">THE SHORT VERSION</div>
-          <div className="manifesto__statements">
-            <p><span>×</span> No dashboards to maintain.</p>
-            <p><span>×</span> No views to predict upfront.</p>
-            <p><span>×</span> No cardinality guilt.</p>
-            <p className="manifesto__positive"><span>→</span> Just telemetry your agents can use.</p>
-          </div>
         </section>
 
         <section className="closing" data-reveal id="early-access">
@@ -384,8 +375,8 @@ function App() {
           <div className="section-kicker">[ PRIVATE ALPHA / DESIGN PARTNERS ]</div>
           <h2>Your telemetry has a{' '}<br />new primary user.</h2>
           <p>
-            We’re working with a small group of AI infrastructure teams. If your agents need to
-            investigate production—not just generate another summary—we should talk.
+            We’re working with a small group of AI infrastructure teams. If your agents need complete
+            production history without an unpredictable observability bill, we should talk.
           </p>
           <LeadCapture source="closing" />
           <BookingLink className="closing__booking" />
@@ -393,9 +384,9 @@ function App() {
       </main>
 
       <footer>
-        <a aria-label="o11y home" className="wordmark wordmark--footer" href="#top">
+        <a aria-label="TraceStore home" className="wordmark wordmark--footer" href="#top">
           <span className="wordmark__mark" aria-hidden="true">⊕</span>
-          o11y_
+          tracestore.dev_
         </a>
         <p>TELEMETRY FOR THE AGENTIC ERA.</p>
         <div>

@@ -252,13 +252,21 @@ footer a:hover {
   letter-spacing: -0.067em;
 }
 
-.hero h1 span {
+.hero h1 {
+  font-size: clamp(36px, 3.8vw, 58px);
+}
+
+.hero h1 .hero__line {
+  white-space: nowrap;
+}
+
+.hero h1 .hero__line--accent {
   position: relative;
   display: inline-block;
   z-index: 0;
 }
 
-.hero h1 span::after {
+.hero h1 .hero__line--accent::after {
   position: absolute;
   z-index: -1;
   right: -7px;
@@ -1079,57 +1087,6 @@ footer a:hover {
   font-size: 9px;
 }
 
-.manifesto {
-  display: grid;
-  min-height: 660px;
-  border-top: 1px solid var(--stroke);
-  border-bottom: 1px solid var(--stroke);
-  background: var(--paper-deep);
-  grid-template-columns: minmax(240px, 0.32fr) 1fr;
-}
-
-.manifesto__label {
-  display: flex;
-  padding: 55px;
-  border-right: 1px solid var(--stroke);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  align-items: flex-start;
-}
-
-.manifesto__statements {
-  display: flex;
-  padding: 70px clamp(38px, 7vw, 110px);
-  flex-direction: column;
-  justify-content: center;
-}
-
-.manifesto__statements p {
-  display: grid;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--stroke);
-  margin: 0;
-  font-size: clamp(34px, 4.3vw, 67px);
-  font-weight: 590;
-  line-height: 1.02;
-  letter-spacing: -0.055em;
-  grid-template-columns: 58px 1fr;
-}
-
-.manifesto__statements p span {
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 400;
-}
-
-.manifesto__statements .manifesto__positive {
-  padding-top: 35px;
-  border-bottom: 0;
-  color: #fff7f2;
-  background: var(--acid-dark);
-  box-shadow: 0 -1px 0 var(--acid-dark), 24px 0 0 var(--acid-dark), -24px 0 0 var(--acid-dark);
-}
-
 .closing {
   position: relative;
   overflow: hidden;
@@ -1292,7 +1249,7 @@ footer div {
   }
 
   .hero h1 {
-    font-size: clamp(48px, 6.4vw, 67px);
+    font-size: clamp(36px, 3.8vw, 46px);
   }
 
   .pipeline {
@@ -1308,9 +1265,6 @@ footer div {
     left: 22px;
   }
 
-  .manifesto {
-    grid-template-columns: 190px 1fr;
-  }
 }
 
 @media (max-width: 860px) {
@@ -1329,6 +1283,10 @@ footer div {
 
   .hero__copy {
     max-width: 740px;
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 7.2vw, 62px);
   }
 
   .terminal-shell {
@@ -1393,21 +1351,6 @@ footer div {
     margin-bottom: 48px;
   }
 
-  .manifesto {
-    min-height: auto;
-    grid-template-columns: 1fr;
-  }
-
-  .manifesto__label {
-    padding: 25px 28px;
-    border-right: 0;
-    border-bottom: 1px solid var(--stroke);
-  }
-
-  .manifesto__statements {
-    padding: 65px 42px;
-  }
-
   footer {
     grid-template-columns: 1fr auto;
   }
@@ -1450,7 +1393,7 @@ footer div {
   }
 
   .hero h1 {
-    font-size: clamp(43px, 13vw, 60px);
+    font-size: clamp(25px, 8vw, 46px);
     line-height: 1.01;
   }
 
@@ -1602,20 +1545,6 @@ footer div {
     line-height: 1.55;
   }
 
-  .manifesto__statements {
-    padding: 54px 28px;
-  }
-
-  .manifesto__statements p {
-    padding: 18px 0;
-    font-size: 33px;
-    grid-template-columns: 38px 1fr;
-  }
-
-  .manifesto__statements .manifesto__positive {
-    box-shadow: 0 -1px 0 var(--acid-dark), 12px 0 0 var(--acid-dark), -12px 0 0 var(--acid-dark);
-  }
-
   .closing {
     padding: 110px 18px;
   }
@@ -1638,6 +1567,20 @@ footer div {
   footer div {
     justify-content: flex-start;
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .wordmark {
+    font-size: 16px;
+  }
+
+  .site-header .wordmark__mark {
+    display: none;
+  }
+
+  .header-cta {
+    font-size: 8px;
   }
 }
 
