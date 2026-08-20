@@ -84,7 +84,7 @@ function App() {
           <span className="wordmark__mark" aria-hidden="true">
             ⊕
           </span>
-          tracestore.dev<span className="wordmark__cursor">_</span>
+          tracestore<span className="wordmark__cursor">_</span>
         </a>
         <nav aria-label="Main navigation">
           <a href="#why">WHY</a>
@@ -101,16 +101,15 @@ function App() {
           <div className="hero__copy">
             <div className="eyebrow">
               <span className="status-dot" />
-              AGENT-NATIVE TELEMETRY / 001
+              AGENT-NATIVE TELEMETRY
             </div>
             <h1 aria-label="Telemetry built for agents, not dashboards.">
               <span className="hero__line">Telemetry built for agents,</span><br />
               <span className="hero__line hero__line--accent">not dashboards.</span>
             </h1>
             <p className="hero__lede">
-              OTEL-native ingest. Blob storage at rest. SQL when an agent needs answers.
-              Keep every high-cardinality dimension forever, with predictable storage-and-query
-              pricing—not a tax on what your telemetry contains.
+              OTEL ingest. SQL query. Built on object storage.<br />
+              Keep every high-cardinality dimension forever, with predictable storage and query pricing.
             </p>
             <LeadCapture source="hero" />
             <div className="hero__secondary">
@@ -206,10 +205,10 @@ function App() {
             <article className="principle-card principle-card--acid">
               <div className="principle-card__index">02</div>
               <BlobIcon />
-              <h3>Raw, forever</h3>
+              <h3>Infinite retention</h3>
               <p>
-                Keep traces, logs, and metrics on low-cost blob storage with no retention window.
-                Decide what matters when the incident actually happens—even years later.
+                Keep all traces, logs, and metrics on low-cost blob storage with no retention window.
+                Use what matters when the incident actually happens.
               </p>
               <span className="mono-tag">retention_days := ∞</span>
             </article>
@@ -218,8 +217,8 @@ function App() {
               <IngestIcon />
               <h3>Cardinality is signal</h3>
               <p>
-                Tenant, prompt, region, model, commit, tool call—these dimensions are how an
-                agent isolates a failure. We don’t treat useful context as contraband.
+                Keep all tenant, prompt, region, model, commit, tool call without aggregation. Agents need all
+                of these to investigate the root cause.
               </p>
               <span className="mono-tag">dimensions := unbounded</span>
             </article>
