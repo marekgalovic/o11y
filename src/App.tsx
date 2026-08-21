@@ -187,7 +187,7 @@ function App() {
           <div className="thesis__heading">
             <h2>Observability changed users.</h2>
             <p>
-              The next primary user of telemetry is software. Agents don’t need another pane
+              The existing observability stack is built for humans. Agents don’t need another pane
               of glass. They need cheap, complete context and a language they can compose.
             </p>
           </div>
