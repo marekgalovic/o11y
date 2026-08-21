@@ -1,6 +1,6 @@
 # TraceStore landing page
 
-Agent-native telemetry landing page built with React, TypeScript, and Vite.
+Agent-native telemetry landing page built with React, TypeScript, and Vite. The production build prerenders the React app into `index.html`, then hydrates it in the browser so crawlers and agents can read the complete page without executing JavaScript.
 
 Use Node 24 (`nvm use`) or another version supported by the `engines` entry in `package.json`.
 
