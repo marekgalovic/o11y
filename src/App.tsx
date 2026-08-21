@@ -83,7 +83,8 @@ function App() {
           <span className="wordmark__mark" aria-hidden="true">
             ⊕
           </span>
-          tracestore<span className="wordmark__cursor">_</span>
+          <span className="wordmark__text">tracestore</span>
+          <span className="wordmark__cursor">_</span>
         </a>
         <nav aria-label="Main navigation">
           <a href="#why">WHY</a>
