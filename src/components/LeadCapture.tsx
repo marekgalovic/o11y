@@ -48,6 +48,7 @@ export function LeadCapture({
           REQUEST ACCESS ↗
         </button>
       </form>
+      <p className="form-message">No spam · Talk to the builders</p>
     </div>
   )
 }
