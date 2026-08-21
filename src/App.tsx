@@ -356,8 +356,8 @@ function App() {
             {comparisonRows.map(([label, agent, legacy]) => (
               <div className="comparison-row" key={label} role="row">
                 <span role="cell">{label}</span>
-                <span role="cell"><i>+</i>{agent}</span>
-                <span role="cell"><i>−</i>{legacy}</span>
+                <span aria-label={`TraceStore: ${agent}`} role="cell"><i>+</i>{agent}</span>
+                <span aria-label={`Dashboard-native: ${legacy}`} role="cell"><i>−</i>{legacy}</span>
               </div>
             ))}
           </div>
