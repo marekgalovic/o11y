@@ -14,6 +14,12 @@ describe('landing page', () => {
     expect(screen.getByRole('heading', { name: 'OTEL in' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Blobs at rest' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'SQL out' })).toBeInTheDocument()
+    expect(screen.getByLabelText('SQL query')).toHaveTextContent(
+      'semantic_match( "gen_ai.output.messages", \'sorry, I cannot help you\' )',
+    )
+    expect(screen.getByLabelText('SQL query')).toHaveTextContent(
+      "ts > now() - interval '30 minutes'",
+    )
     expect(screen.getAllByLabelText('Work email')).toHaveLength(2)
   })
 })

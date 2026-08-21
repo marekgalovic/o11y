@@ -6,16 +6,15 @@ import { trackEvent } from './lib/analytics'
 const bookingUrl = import.meta.env.VITE_BOOKING_URL
 
 const sqlLines = [
-  [
-    'SELECT',
-    " trace_id, span_name, attrs['tenant.id']",
-    ' keyword',
-  ],
-  ['  AS tenant, duration_ms', '', ''],
+  ['SELECT', ' trace_id, span_name,', ' keyword'],
+  ['', '  semantic_match(', ''],
+  ['', '    "gen_ai.output.messages",', ''],
+  ['', "    'sorry, I cannot help you'", ''],
+  ['', '  ) AS refusal_score', ''],
   ['FROM', ' spans', ' keyword'],
-  ['WHERE', " service = 'checkout-api'", ' keyword'],
-  ['  AND', " ts > now() - interval '10 minutes'", ' keyword'],
-  ['ORDER BY', ' duration_ms DESC', ' keyword'],
+  ['WHERE', " service = 'support-agent'", ' keyword'],
+  ['  AND', " ts > now() - interval '30 minutes'", ' keyword'],
+  ['ORDER BY', ' refusal_score DESC', ' keyword'],
   ['LIMIT', ' 50;', ' keyword'],
 ]
 
@@ -130,12 +129,12 @@ function App() {
               <span>investigator-07 / LIVE</span>
             </div>
             <div className="terminal-shell__question">
-              <span>agent.question</span>
-              <p>“Why did checkout latency spike for tenant_7f1c after deploy?”</p>
+              <span>agent.investigation</span>
+              <p>“Find refusals that never emitted a policy or error tag.”</p>
             </div>
             <div className="terminal-shell__query">
               <div className="line-numbers" aria-hidden="true">
-                01<br />02<br />03<br />04<br />05<br />06<br />07
+                01<br />02<br />03<br />04<br />05<br />06<br />07<br />08<br />09<br />10
               </div>
               <pre aria-label="SQL query">
                 <code>
@@ -153,23 +152,23 @@ function App() {
               <div className="result-head">
                 <span>trace_id</span>
                 <span>span_name</span>
-                <span>duration</span>
+                <span>refusal</span>
               </div>
               <div className="result-row result-row--hot">
                 <span>8fd1...a02c</span>
-                <span>inventory.reserve</span>
-                <span>4,882 ms</span>
+                <span>support-agent.answer</span>
+                <span>0.97</span>
               </div>
               <div className="result-row">
                 <span>f21b...9e17</span>
-                <span>payment.authorize</span>
-                <span>812 ms</span>
+                <span>support-agent.answer</span>
+                <span>0.91</span>
               </div>
             </div>
             <div className="terminal-shell__finding">
               <span>↳ finding</span>
-              Cold cache on inventory-shard-19, isolated to tenant_7f1c.
-              <i> confidence 0.94</i>
+              127 likely refusals in the last 30 minutes; 63 emitted no policy or error tag.
+              <i> confidence 0.96</i>
             </div>
           </div>
         </section>
@@ -322,7 +321,7 @@ function App() {
             </div>
             <div className="agent-message agent-message--query">
               <span className="agent-message__type">QUERY</span>
-              <code>SELECT deploy_sha, k8s_node, p95(duration_ms)<br />FROM spans<br />WHERE tenant_id = '7f1c'<br />GROUP BY ALL</code>
+              <code>SELECT deploy_sha, k8s_node, p95(duration_ms) as latency_ms<br />FROM spans<br />WHERE tenant_id = '7f1c'<br />GROUP BY deploy_sha, k8s_node<br />ORDER BY latency_ms DESC<br />LIMIT 50</code>
             </div>
             <div className="agent-message">
               <span className="agent-message__type">OBSERVE</span>
@@ -380,12 +379,12 @@ function App() {
           <LeadCapture source="closing" />
           <BookingLink className="closing__booking" />
         </section>
-      </main>
+      </main >
 
       <footer>
         <a aria-label="TraceStore home" className="wordmark wordmark--footer" href="#top">
           <span className="wordmark__mark" aria-hidden="true">⊕</span>
-          tracestore.dev_
+          tracestore
         </a>
         <p>TELEMETRY FOR THE AGENTIC ERA.</p>
         <div>
