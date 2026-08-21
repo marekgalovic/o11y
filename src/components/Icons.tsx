@@ -43,3 +43,12 @@ export function IngestIcon(props: IconProps) {
     </svg>
   )
 }
+
+export function TraceMarkIcon(props: IconProps) {
+  return (
+    <svg {...defaults} strokeWidth={1.8} {...props}>
+      <path d="M5 5v14M5 7h4M5 12h7M5 17h4" />
+      <path d="M9 5h9v4H9zM12 10h7v4h-7zM9 15h10v4H9z" />
+    </svg>
+  )
+}

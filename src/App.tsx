@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { ArrowIcon, BlobIcon, BracketsIcon, IngestIcon } from './components/Icons'
+import { ArrowIcon, BlobIcon, BracketsIcon, IngestIcon, TraceMarkIcon } from './components/Icons'
 import { LeadCapture } from './components/LeadCapture'
 import { trackEvent } from './lib/analytics'
 
@@ -81,7 +81,7 @@ function App() {
       <header className="site-header">
         <a aria-label="TraceStore home" className="wordmark" href="#top">
           <span className="wordmark__mark" aria-hidden="true">
-            ⊕
+            <TraceMarkIcon />
           </span>
           <span className="wordmark__text">tracestore</span>
           <span className="wordmark__cursor">_</span>
@@ -92,7 +92,7 @@ function App() {
           <a href="#query">QUERY</a>
         </nav>
         <a className="header-cta" href="#early-access">
-          JOIN THE ALPHA <span aria-hidden="true">↘</span>
+          GET EARLY ACCESS <span aria-hidden="true">↘</span>
         </a>
       </header>
 
@@ -239,7 +239,7 @@ function App() {
 
           <div className="pipeline">
             <div className="pipeline__node">
-              <span className="node-label">INGEST / 4317</span>
+              <span className="node-label">INGEST</span>
               <IngestIcon />
               <h3>OTEL in</h3>
               <p>Traces · logs · metrics</p>
@@ -250,7 +250,7 @@ function App() {
               <div><i /><i /><i /></div>
             </div>
             <div className="pipeline__node pipeline__node--dark">
-              <span className="node-label">STORE / PARQUET</span>
+              <span className="node-label">STORE</span>
               <BlobIcon />
               <h3>Blobs at rest</h3>
               <p>Columnar · durable · cheap</p>
@@ -261,7 +261,7 @@ function App() {
               <div><i /><i /><i /></div>
             </div>
             <div className="pipeline__node pipeline__node--acid">
-              <span className="node-label">QUERY / ANSI-ish</span>
+              <span className="node-label">QUERY</span>
               <BracketsIcon />
               <h3>SQL out</h3>
               <p>Flexible · composable · agentic</p>
@@ -273,7 +273,7 @@ function App() {
             <span>+</span>
             <p>
               No proprietary agent SDK. No new query DSL. No instrumentation rewrite.
-              <strong> If it speaks OpenTelemetry, it speaks TraceStore.</strong>
+              <strong> If it speaks OpenTelemetry, it speaks&nbsp;TraceStore.</strong>
             </p>
           </div>
         </section>
@@ -384,7 +384,7 @@ function App() {
 
       <footer>
         <a aria-label="TraceStore home" className="wordmark wordmark--footer" href="#top">
-          <span className="wordmark__mark" aria-hidden="true">⊕</span>
+          <span className="wordmark__mark" aria-hidden="true"><TraceMarkIcon /></span>
           tracestore
         </a>
         <p>TELEMETRY FOR THE AGENTIC ERA.</p>

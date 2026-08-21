@@ -146,14 +146,17 @@ svg {
   display: grid;
   width: 27px;
   height: 27px;
-  border-radius: 50%;
+  border-radius: 0;
   margin-right: 9px;
   background: var(--acid);
   color: var(--void);
-  font-size: 21px;
-  line-height: 1;
   letter-spacing: 0;
   place-items: center;
+}
+
+.wordmark__mark svg {
+  width: 20px;
+  height: 20px;
 }
 
 .wordmark__text {
@@ -1394,7 +1397,11 @@ footer div {
   .wordmark__mark {
     width: 24px;
     height: 24px;
-    font-size: 18px;
+  }
+
+  .wordmark__mark svg {
+    width: 18px;
+    height: 18px;
   }
 
   .header-cta {
