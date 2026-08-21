@@ -372,10 +372,6 @@ footer a:hover {
   letter-spacing: 0.045em;
 }
 
-.form-message--error {
-  color: var(--error);
-}
-
 .hero__secondary {
   display: flex;
   margin-top: 24px;

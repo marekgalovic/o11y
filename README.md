@@ -12,13 +12,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-The waitlist endpoint must accept a JSON `POST` body shaped as:
-
-```json
-{ "email": "dev@example.com", "source": "hero" }
-```
-
-Any `2xx` response is considered successful. Leave the PostHog variables empty to run without analytics. The site never sends the submitted email address to PostHog.
+The early-access forms submit directly to Google Forms using its native HTML form action. No API key or backend service is required. The production form action is included by default; `VITE_GOOGLE_FORM_ACTION` can override it for another form. Leave the PostHog variables empty to run without analytics. The site never sends the submitted email address to PostHog.
 
 ## Checks
 
@@ -38,7 +32,7 @@ Point the domain's DNS records at GitHub Pages and configure `tracestore.dev` un
 
 Configure these optional repository variables under **Settings → Secrets and variables → Actions → Variables**:
 
-- `VITE_WAITLIST_ENDPOINT`
+- `VITE_GOOGLE_FORM_ACTION`
 - `VITE_BOOKING_URL`
 - `VITE_POSTHOG_KEY`
 - `VITE_POSTHOG_HOST`

@@ -1,78 +1,44 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 import { LeadCapture } from './LeadCapture'
 
+const ACTION =
+  'https://docs.google.com/forms/d/e/test-form/formResponse'
+
 describe('LeadCapture', () => {
-  afterEach(() => {
-    vi.unstubAllGlobals()
+  it('submits the email directly to Google Forms in a new tab', () => {
+    const { container } = render(<LeadCapture action={ACTION} source="hero" />)
+    const form = container.querySelector('form')!
+    const email = screen.getByLabelText('Work email')
+
+    expect(form).toHaveAttribute('action', ACTION)
+    expect(form).toHaveAttribute('method', 'post')
+    expect(form).toHaveAttribute('target', '_blank')
+    expect(email).toHaveAttribute('name', 'entry.166846648')
+    expect(email).toBeRequired()
   })
 
-  it('rejects an invalid email before making a request', () => {
-    const fetchMock = vi.fn()
-    vi.stubGlobal('fetch', fetchMock)
+  it('includes the Google Forms submission metadata', () => {
+    const { container } = render(<LeadCapture action={ACTION} source="hero" />)
 
-    render(<LeadCapture endpoint="https://example.com/waitlist" source="hero" />)
-    fireEvent.change(screen.getByLabelText('Work email'), { target: { value: 'not-an-email' } })
-    fireEvent.submit(screen.getByRole('button', { name: /request access/i }).closest('form')!)
-
-    expect(screen.getByText('Enter a valid work email.')).toBeInTheDocument()
-    expect(fetchMock).not.toHaveBeenCalled()
+    expect(container.querySelector('input[name="fvv"]')).toHaveValue('1')
+    expect(container.querySelector('input[name="pageHistory"]')).toHaveValue('0')
   })
 
-  it('shows an honest error when the endpoint is not configured', () => {
-    render(<LeadCapture endpoint="" source="hero" />)
-    fireEvent.change(screen.getByLabelText('Work email'), { target: { value: 'dev@example.com' } })
-    fireEvent.click(screen.getByRole('button', { name: /request access/i }))
-
-    expect(screen.getByText('Early access signup is not configured yet.')).toBeInTheDocument()
-  })
-
-  it('submits normalized lead data and reports success without tracking the email', async () => {
-    const fetchMock = vi.fn().mockResolvedValue({ ok: true })
+  it('tracks the attempt without exposing the submitted email', () => {
     const trackMock = vi.fn()
-    vi.stubGlobal('fetch', fetchMock)
-
-    render(
-      <LeadCapture
-        endpoint="https://example.com/waitlist"
-        onTrack={trackMock}
-        source="closing"
-      />,
+    const { container } = render(
+      <LeadCapture action={ACTION} onTrack={trackMock} source="closing" />,
     )
+
     fireEvent.change(screen.getByLabelText('Work email'), {
-      target: { value: '  DEV@Example.com  ' },
+      target: { value: 'dev@example.com' },
     })
-    fireEvent.click(screen.getByRole('button', { name: /request access/i }))
+    fireEvent.submit(container.querySelector('form')!)
 
-    await waitFor(() => {
-      expect(screen.getByText("You're on the list. We'll be in touch.")).toBeInTheDocument()
-    })
-
-    expect(fetchMock).toHaveBeenCalledWith('https://example.com/waitlist', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: 'dev@example.com', source: 'closing' }),
-    })
-    expect(trackMock).toHaveBeenCalledWith('waitlist_submission_succeeded', {
+    expect(trackMock).toHaveBeenCalledWith('waitlist_submission_attempted', {
       source: 'closing',
     })
     expect(JSON.stringify(trackMock.mock.calls)).not.toContain('dev@example.com')
-  })
-
-  it('preserves the email and permits retry after a failed request', async () => {
-    const fetchMock = vi.fn().mockResolvedValue({ ok: false, status: 500 })
-    vi.stubGlobal('fetch', fetchMock)
-
-    render(<LeadCapture endpoint="https://example.com/waitlist" source="hero" />)
-    const input = screen.getByLabelText('Work email') as HTMLInputElement
-    fireEvent.change(input, { target: { value: 'dev@example.com' } })
-    fireEvent.click(screen.getByRole('button', { name: /request access/i }))
-
-    await waitFor(() => {
-      expect(screen.getByText('Something went sideways. Try again in a moment.')).toBeInTheDocument()
-    })
-
-    expect(input.value).toBe('dev@example.com')
-    expect(screen.getByRole('button', { name: /request access/i })).not.toBeDisabled()
   })
 })
