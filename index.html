@@ -1,29 +1,74 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#090a09" />
-    <meta
-      name="description"
-      content="Telemetry for agents with OTEL-native ingest, infinite retention on blob storage, SQL queries, and predictable usage-based pricing."
-    />
-    <link rel="canonical" href="https://tracestore.dev/" />
-    <meta property="og:title" content="TraceStore — telemetry built for agents" />
-    <meta
-      property="og:description"
-      content="Agents are the primary user. Retain every OTEL signal forever and query it with SQL on a predictable pricing model."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tracestore.dev/" />
-    <meta property="og:site_name" content="TraceStore" />
-    <meta name="twitter:card" content="summary" />
-    <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml" />
-    <title>TraceStore — telemetry built for agents</title>
-    <script>document.documentElement.classList.add('js')</script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090a09" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="description"
+    content="Headless observability stack with OTEL-native ingest, SQL query interface, and infinite retention on blob storage." />
+  <meta name="keywords"
+    content="observability for agents, agent observability, AI agent telemetry, OpenTelemetry, OTEL-native observability, semantic telemetry search, infinite telemetry retention" />
+  <link rel="canonical" href="https://tracestore.dev/" />
+  <meta property="og:title" content="TraceStore - agent-native observability stack" />
+  <meta property="og:description"
+    content="Headless observability stack with OTEL-native ingest, SQL query interface, and infinite retention on blob storage." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tracestore.dev/" />
+  <meta property="og:site_name" content="TraceStore" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="TraceStore - agent-native observability stack" />
+  <meta name="twitter:description"
+    content="Headless observability stack with OTEL-native ingest, SQL query interface, and infinite retention on blob storage." />
+  <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml" />
+  <title>TraceStore - agent-native observability stack</title>
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://tracestore.dev/#organization",
+            "name": "TraceStore",
+            "url": "https://tracestore.dev/"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://tracestore.dev/#website",
+            "url": "https://tracestore.dev/",
+            "name": "TraceStore",
+            "description": "Observability and telemetry infrastructure built for AI agents.",
+            "publisher": { "@id": "https://tracestore.dev/#organization" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://tracestore.dev/#software",
+            "name": "TraceStore",
+            "url": "https://tracestore.dev/",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cloud",
+            "description": "Agent-native observability stack with OpenTelemetry ingest, infinite retention on blob storage, semantic SQL queries, and predictable pricing.",
+            "featureList": [
+              "OpenTelemetry-native ingest",
+              "Infinite telemetry retention",
+              "Semantic SQL for agent investigations",
+              "High-cardinality telemetry storage",
+              "Predictable storage and query pricing"
+            ],
+            "publisher": { "@id": "https://tracestore.dev/#organization" }
+          }
+        ]
+      }
+    </script>
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
